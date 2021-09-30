@@ -16,7 +16,9 @@
   },
   "license": "0BSD",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "gatsby": "^3.13.1",
+    "gatsby-source-shopify": "^5.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
