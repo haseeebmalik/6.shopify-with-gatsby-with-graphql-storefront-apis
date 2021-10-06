@@ -61,7 +61,9 @@ const addLineItems = gql`
   }
 `;
 const IndexPage = ({ data }) => {
+  const [checkOutDataVar, setCheckoutVar] = React.useState();
   console.log("dataa", data);
+  const [triggeruseEffect, setTriggerUseEffect] = React.useState(false);
   const [createCheckoutMutation, { data: checkoutData }] =
     useMutation(createCheckout);
   const [addLineItemMutation, { data: addLineItemData }] =
@@ -75,13 +77,28 @@ const IndexPage = ({ data }) => {
         },
       });
       console.log("checkout session created", response);
+      setCheckoutVar(response);
+      console.log("checkoutData.checkoutCreate.checkout.id", response);
     })();
   }, []);
-
+  // setCheckoutVar("abc");
+  console.log("checkoutData.checkoutCreate.checkout.id_out", checkOutDataVar);
   return (
     <main>
       hello world
       <div>
+        <button
+          onClick={() => {
+            console.log(
+              "weburl",
+              checkOutDataVar.data.checkoutCreate.checkout.webUrl
+            );
+            // return;
+            window.open(checkoutData?.createCheckout?.checkout?.webUrl);
+          }}
+        >
+          checkout
+        </button>
         <button
           onClick={() => {
             navigate("/cart");
@@ -116,17 +133,21 @@ const IndexPage = ({ data }) => {
                   <br />
                   <button
                     onClick={async () => {
-                      addLineItemMutation({
+                      const responseAddLineItems = await addLineItemMutation({
                         variables: {
                           lineItems: [
                             {
                               quantity: 1,
-                              variantId: "",
+                              variantId:
+                                node.node.variants[ind].product.variants[ind]
+                                  .storefrontId,
                             },
                           ],
-                          // checkoutId
+                          checkoutId:
+                            checkoutData?.checkoutCreate?.checkout?.id,
                         },
                       });
+                      console.log("responseAddLineItems", responseAddLineItems);
                     }}
                   >
                     Add to Cart
