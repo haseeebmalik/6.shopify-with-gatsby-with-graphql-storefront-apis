@@ -8,11 +8,11 @@ import fetch from "cross-fetch";
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: "https://haseeeb-store.myshopify.com/api/2021-07/graphql.json",
+    uri: "https://haseeeb-store-2.myshopify.com/api/2021-07/graphql.json",
     //for fetch we install cross-fetch library
     fetch,
     headers: {
-      "X-Shopify-Storefront-Access-Token": "4791a30ca4703aeb6e78af79ee8e1ab8",
+      "X-Shopify-Storefront-Access-Token": "8bc8a7af0e158f62e5ceaf9d2226d242",
     },
   }),
   cache: new InMemoryCache(),

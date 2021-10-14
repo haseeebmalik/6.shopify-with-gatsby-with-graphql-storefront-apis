@@ -60,6 +60,13 @@ const addLineItems = gql`
     }
   }
 `;
+const checkOutSubmit = async () => {
+  const response = await fetch("/.netlify/functions/gqlnode", {
+    method: "post",
+  });
+  const dataa = await response.json();
+  console.log("dataaaaaaa===>", dataa);
+}
 const IndexPage = ({ data }) => {
   const [checkOutDataVar, setCheckoutVar] = React.useState();
   console.log("dataa", data);
@@ -152,10 +159,13 @@ const IndexPage = ({ data }) => {
                   >
                     Add to Cart
                   </button>
+                  <br/>
+                 
                 </div>
               ))}
             </div>
           ))}
+           <button onClick={checkOutSubmit}>gqlNodeFunction</button>
       </div>
     </main>
   );

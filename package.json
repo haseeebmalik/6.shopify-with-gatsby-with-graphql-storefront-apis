@@ -17,6 +17,7 @@
   "license": "0BSD",
   "dependencies": {
     "@apollo/client": "^3.4.15",
+    "@shopify/shopify-api": "^1.4.1",
     "cross-fetch": "^3.1.4",
     "dotenv": "^10.0.0",
     "gatsby": "^3.13.1",
